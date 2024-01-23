@@ -1,2 +1,2 @@
 # enterprise_management_system
-RESTFul API software for enterprise employee management and customer service.
+RESTFul API system for electronic accounting of the enterprise.
