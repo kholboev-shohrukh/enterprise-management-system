@@ -1,2 +1,2 @@
 # enterprise-management-system
-Enterprise Management System (Mohirdev practice)
+RESTFul API software for enterprise employee management and customer service.
