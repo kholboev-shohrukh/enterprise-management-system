@@ -1,2 +1,2 @@
-# enterprise_management_system
-RESTFul API system for electronic accounting of the enterprise.
+# ekorxona
+Korxonaning elektron hisobini yuritish uchun RESTFul API tizimi.
