@@ -41,10 +41,10 @@ public class StatisticController {
         return new ResponseEntity<>(statisticService.sumEmployeesSalary(), HttpStatus.OK);
     }
 
-    @GetMapping("/customers/daily")
-    public ResponseEntity<Integer> getCountDailyRegisteredCustomers(){
-        return new ResponseEntity<>(statisticService.getCountDailyRegisteredCustomers(), HttpStatus.OK);
-    }
+//    @GetMapping("/customers/daily")
+//    public ResponseEntity<Long> getCountDailyRegisteredCustomers(){
+//        return new ResponseEntity<>(statisticService.getCountDailyRegisteredCustomers(), HttpStatus.OK);
+//    }
 
     @GetMapping("/customers/total/employee")
     public ResponseEntity<EmployeeResponse> getEmployeeRegisteredWithMostCustomers(){

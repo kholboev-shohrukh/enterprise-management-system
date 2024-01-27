@@ -17,8 +17,8 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
     @Query("select SUM(u.salary) from users u")
     BigDecimal sumSalary();
 
-    @Query("select COUNT(u) from users u where DATE(u.createdAt) = CURRENT_DATE")
-    Integer getCountDailyRegisteredCustomers();
+//    @Query("select COUNT(c) from customer c where DATE(c.createdAt) = CURRENT_DATE")
+//    Long countDailyRegisteredCustomers();
 
     @Query("select u from users u JOIN FETCH customer c group by u.id order by COUNT(c) desc")
     EmployeeEntity findEmployeeWithMostCustomers();

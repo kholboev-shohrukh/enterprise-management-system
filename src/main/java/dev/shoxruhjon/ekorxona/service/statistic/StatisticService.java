@@ -18,7 +18,7 @@ public interface StatisticService {
 
     BigDecimal sumEmployeesSalary();
 
-    Integer getCountDailyRegisteredCustomers();
+//    Long getCountDailyRegisteredCustomers();
 
     EmployeeResponse getEmployeeRegisteredWithMostCustomers();
 

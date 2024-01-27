@@ -57,10 +57,10 @@ public class StatisticServiceImpl implements StatisticService {
         return employeeRepository.sumSalary();
     }
 
-    @Override
-    public Integer getCountDailyRegisteredCustomers() {
-        return employeeRepository.getCountDailyRegisteredCustomers();
-    }
+//    @Override
+//    public Long getCountDailyRegisteredCustomers() {
+//        return employeeRepository.countDailyRegisteredCustomers();
+//    }
 
     @Override
     public EmployeeResponse getEmployeeRegisteredWithMostCustomers() {
