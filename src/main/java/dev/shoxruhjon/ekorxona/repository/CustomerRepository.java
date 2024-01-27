@@ -3,8 +3,10 @@ package dev.shoxruhjon.ekorxona.repository;
 import dev.shoxruhjon.ekorxona.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +20,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
 
     @Query("select c from customer c where c.id = ?1 and c.isAchived = false")
     Optional<CustomerEntity> findByIdCustomer(Integer id);
+
+    @Query("select COUNT(c) from customer c WHERE c.createdAt BETWEEN :startDate AND :endDate")
+    Integer countByRegistrationDateBetween(@Param("startDate")LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 }

@@ -34,7 +34,7 @@ public class AuthEntity implements UserDetails {
 
     @OneToOne
     @JoinColumn
-    private UserEntity userEntity;
+    private EmployeeEntity employeeEntity;
 
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
             throw new DataAlreadyExistsException("Email already exists with email: " + dto.getEmail());
         AuthEntity authEntity = modelMapper.map(dto, AuthEntity.class);
         authEntity.setRole(Role.Xodim);
-        authEntity.setUserEntity(null);
+        authEntity.setEmployeeEntity(null);
         authEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
         return authRepository.save(authEntity).getId();
     }

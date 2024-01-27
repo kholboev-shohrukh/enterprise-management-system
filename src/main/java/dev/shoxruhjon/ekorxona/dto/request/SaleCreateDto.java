@@ -12,19 +12,11 @@ import java.math.BigDecimal;
 @Data
 @Getter
 @Setter
-public class UserCreateDto implements Serializable {
+public class SaleCreateDto implements Serializable {
     @NotBlank
-    String firstName;
-    @NotBlank
-    String lastName;
+    String advertisement;
     @NotNull
-    Integer age;
+    BigDecimal expense;
     @NotNull
-    PassportCreateDto passport;
-    BigDecimal salary;
-    String address;
-    @NotBlank
-    String department;
-
-
+    Integer lifetime;
 }

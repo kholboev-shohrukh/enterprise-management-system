@@ -1,5 +1,6 @@
 package dev.shoxruhjon.ekorxona.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -32,12 +33,14 @@ public abstract class Auditable {
     @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT NOW()")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
     @CreatedDate
     private LocalDateTime createdAt;
 
     @Column
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 

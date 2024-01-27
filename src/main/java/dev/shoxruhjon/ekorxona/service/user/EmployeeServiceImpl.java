@@ -1,15 +1,16 @@
 package dev.shoxruhjon.ekorxona.service.user;
 
 import dev.shoxruhjon.ekorxona.dto.request.PassportCreateDto;
-import dev.shoxruhjon.ekorxona.dto.request.UserCreateDto;
-import dev.shoxruhjon.ekorxona.dto.request.UserUpdateDto;
+import dev.shoxruhjon.ekorxona.dto.request.EmployeeCreateDto;
+import dev.shoxruhjon.ekorxona.dto.request.EmployeeUpdateDto;
 import dev.shoxruhjon.ekorxona.entity.AuthEntity;
 import dev.shoxruhjon.ekorxona.entity.AuthResponse;
 import dev.shoxruhjon.ekorxona.entity.PassportEntity;
-import dev.shoxruhjon.ekorxona.entity.UserEntity;
+import dev.shoxruhjon.ekorxona.entity.EmployeeEntity;
+import dev.shoxruhjon.ekorxona.entity.enums.Department;
 import dev.shoxruhjon.ekorxona.repository.AuthRepository;
 import dev.shoxruhjon.ekorxona.repository.PassportRepository;
-import dev.shoxruhjon.ekorxona.repository.UserRepository;
+import dev.shoxruhjon.ekorxona.repository.EmployeeRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,59 +20,59 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
     private final PassportRepository passportRepository;
     private final AuthRepository authRepository;
 
     @Override
-    public AuthResponse createUser(@NonNull UserCreateDto dto, Integer userId) {
-        UserEntity userEntity = modelMapper.map(dto, UserEntity.class);
+    public AuthResponse createUser(@NonNull EmployeeCreateDto dto, Integer userId) {
+        EmployeeEntity employeeEntity = modelMapper.map(dto, EmployeeEntity.class);
         AuthEntity authEntity = authRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        userEntity.setPassportEntity(createPassport(dto.getPassport()));
-        authEntity.setUserEntity(userRepository.save(userEntity));
+        employeeEntity.setPassportEntity(createPassport(dto.getPassport()));
+        authEntity.setEmployeeEntity(employeeRepository.save(employeeEntity));
         return modelMapper.map(authRepository.save(authEntity), AuthResponse.class);
     }
 
     @Override
-    public List<UserEntity> findAll() {
-        return userRepository.findAll();
+    public List<EmployeeEntity> findAll() {
+        return employeeRepository.findAll();
     }
 
     @Override
-    public UserEntity updateUser(@NonNull UserUpdateDto dto, Integer id) {
-        UserEntity userEntity = userRepository.findById(id)
+    public EmployeeEntity updateUser(@NonNull EmployeeUpdateDto dto, Integer id) {
+        EmployeeEntity employeeEntity = employeeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found."));
         if (dto.getFirstName() != null)
-            userEntity.setFirstName(dto.getFirstName());
+            employeeEntity.setFirstName(dto.getFirstName());
         if (dto.getLastName() != null)
-            userEntity.setLastName(dto.getLastName());
+            employeeEntity.setLastName(dto.getLastName());
         if (dto.getAge() != null)
-            userEntity.setAge(dto.getAge());
+            employeeEntity.setAge(dto.getAge());
         if (dto.getAddress() != null)
-            userEntity.setAddress(dto.getAddress());
+            employeeEntity.setAddress(dto.getAddress());
         if (dto.getDepartment() != null)
-            userEntity.setDepartment(dto.getDepartment());
+            employeeEntity.setDepartment(Department.valueOf(String.valueOf(dto.getDepartment())));
         if (dto.getSalary() != null)
-            userEntity.setSalary(dto.getSalary());
+            employeeEntity.setSalary(dto.getSalary());
 
-        userEntity.setPassportEntity(updatePassport(dto.getPassport(), userEntity.getPassportEntity().getId()));
+        employeeEntity.setPassportEntity(updatePassport(dto.getPassport(), employeeEntity.getPassportEntity().getId()));
 
-        return userRepository.save(userEntity);
+        return employeeRepository.save(employeeEntity);
     }
 
     @Override
-    public UserEntity findUserById(@NonNull Integer userId) {
-        return userRepository.findById(userId)
+    public EmployeeEntity findUserById(@NonNull Integer userId) {
+        return employeeRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @Override
     public String deleteUserById(@NonNull Integer userId) {
-        userRepository.deleteById(userId);
+        employeeRepository.deleteById(userId);
         return "Deleted";
     }
 

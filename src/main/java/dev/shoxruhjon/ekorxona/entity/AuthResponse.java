@@ -16,6 +16,6 @@ public class AuthResponse implements Serializable {
     @Email
     String email;
     String password;
-    UserEntity userEntity;
+    EmployeeEntity employeeEntity;
     Role role;
 }

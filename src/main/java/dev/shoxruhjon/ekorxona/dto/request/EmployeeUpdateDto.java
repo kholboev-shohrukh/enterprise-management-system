@@ -1,5 +1,6 @@
 package dev.shoxruhjon.ekorxona.dto.request;
 
+import dev.shoxruhjon.ekorxona.entity.enums.Department;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,12 +12,12 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 
-public class UserUpdateDto implements Serializable {
+public class EmployeeUpdateDto implements Serializable {
     String firstName;
     String lastName;
     Integer age;
     PassportCreateDto passport;
     BigDecimal salary;
     String address;
-    String department;
+    Department department;
 }

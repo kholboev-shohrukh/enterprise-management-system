@@ -1,6 +1,6 @@
 package dev.shoxruhjon.ekorxona.entity;
 
-import dev.shoxruhjon.ekorxona.entity.enums.Role;
+import dev.shoxruhjon.ekorxona.entity.enums.Department;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity extends Auditable{
+public class EmployeeEntity extends Auditable{
 
     @Column
     private String firstName;
@@ -36,6 +36,7 @@ public class UserEntity extends Auditable{
     private String address;
 
     @Column
-    private String department;
+    @Enumerated(EnumType.STRING)
+    private Department department;
 
 }

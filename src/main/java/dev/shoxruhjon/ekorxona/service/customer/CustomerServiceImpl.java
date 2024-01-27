@@ -4,7 +4,7 @@ import dev.shoxruhjon.ekorxona.dto.request.CustomerDto;
 import dev.shoxruhjon.ekorxona.entity.CustomerEntity;
 import dev.shoxruhjon.ekorxona.exception.DataNotFoundException;
 import dev.shoxruhjon.ekorxona.repository.CustomerRepository;
-import dev.shoxruhjon.ekorxona.service.user.UserService;
+import dev.shoxruhjon.ekorxona.service.user.EmployeeService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,12 +17,12 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
-    private final UserService userService;
+    private final EmployeeService employeeService;
     @Override
     public CustomerEntity createCustomer(@NonNull CustomerDto dto, Integer userId) {
         CustomerEntity customerEntity = modelMapper.map(dto, CustomerEntity.class);
         customerEntity.setCreatedBy(userId);
-        customerEntity.setPassportEntity(userService.createPassport(dto.getPassport()));
+        customerEntity.setPassportEntity(employeeService.createPassport(dto.getPassport()));
         return customerRepository.save(customerEntity);
     }
 
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerEntity.setAddress(dto.getAddress());
         if(dto.getPassport() != null)
             customerEntity.setPassportEntity(
-                    userService.updatePassport(dto.getPassport(),
+                    employeeService.updatePassport(dto.getPassport(),
                             customerEntity.getPassportEntity().getId()));
         return customerRepository.save(customerEntity);
     }
