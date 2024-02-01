@@ -1,5 +1,6 @@
-package dev.shoxruhjon.ekorxona.entity;
+package dev.shoxruhjon.ekorxona.dto.response;
 
+import dev.shoxruhjon.ekorxona.entity.PassportEntity;
 import dev.shoxruhjon.ekorxona.entity.enums.Department;
 import lombok.Data;
 import lombok.Getter;

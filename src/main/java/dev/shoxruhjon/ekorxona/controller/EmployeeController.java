@@ -2,7 +2,7 @@ package dev.shoxruhjon.ekorxona.controller;
 
 import dev.shoxruhjon.ekorxona.dto.request.EmployeeCreateDto;
 import dev.shoxruhjon.ekorxona.dto.request.EmployeeUpdateDto;
-import dev.shoxruhjon.ekorxona.entity.AuthResponse;
+import dev.shoxruhjon.ekorxona.dto.response.AuthResponse;
 import dev.shoxruhjon.ekorxona.entity.EmployeeEntity;
 import dev.shoxruhjon.ekorxona.service.user.EmployeeService;
 import lombok.RequiredArgsConstructor;

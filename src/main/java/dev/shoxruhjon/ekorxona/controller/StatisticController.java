@@ -2,7 +2,7 @@ package dev.shoxruhjon.ekorxona.controller;
 
 import dev.shoxruhjon.ekorxona.dto.response.EmployeeByDepartmentResponse;
 import dev.shoxruhjon.ekorxona.entity.EmployeeEntity;
-import dev.shoxruhjon.ekorxona.entity.EmployeeResponse;
+import dev.shoxruhjon.ekorxona.dto.response.EmployeeResponse;
 import dev.shoxruhjon.ekorxona.service.statistic.StatisticService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -59,5 +60,25 @@ public class StatisticController {
     @GetMapping("/customers/month")
     public ResponseEntity<Integer> getCountCustomersRegisteredLastMonth(){
         return new ResponseEntity<>(statisticService.countCustomersRegisteredLastMonth(), HttpStatus.OK);
+    }
+
+    @GetMapping("/highest-advertising-cost")
+    public ResponseEntity<String> getTypeWithHighestAdvertisingCosts(){
+        return new ResponseEntity<>(statisticService.getTypeWithHighestAdvertisingCosts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/most-registrations-last-month")
+    public ResponseEntity<LocalDateTime> getDayWithMostRegistrationsLastMonth() {
+        return new ResponseEntity<>(statisticService.getDayWithMostRegistrationsLastMonth(), HttpStatus.OK);
+    }
+
+    @GetMapping("/most-advertising-expenses")
+    public ResponseEntity<Integer> getEmployeeWithMostAdvertisingExpenses() {
+        return new ResponseEntity<>(statisticService.getEmployeeWithMostAdvertisingExpenses(), HttpStatus.OK);
+    }
+
+    @GetMapping("/advertisements-launched-last-month")
+    public ResponseEntity<Integer> countAdvertisementsLaunchedLastMonth(){
+        return new ResponseEntity<>(statisticService.countAdvertisementsLaunchedLastMonth(), HttpStatus.OK);
     }
 }

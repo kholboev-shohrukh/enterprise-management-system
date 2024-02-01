@@ -25,7 +25,7 @@ public class EmployeeEntity extends Auditable{
     @Column
     private Integer age;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private PassportEntity passportEntity;
 

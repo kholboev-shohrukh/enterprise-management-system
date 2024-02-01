@@ -1,5 +1,6 @@
-package dev.shoxruhjon.ekorxona.entity;
+package dev.shoxruhjon.ekorxona.dto.response;
 
+import dev.shoxruhjon.ekorxona.entity.EmployeeEntity;
 import dev.shoxruhjon.ekorxona.entity.enums.Role;
 import jakarta.validation.constraints.Email;
 import lombok.Data;

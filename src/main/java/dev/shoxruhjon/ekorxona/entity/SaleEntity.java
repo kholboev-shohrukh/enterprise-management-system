@@ -10,7 +10,7 @@ import org.springframework.data.annotation.CreatedBy;
 
 import java.math.BigDecimal;
 
-@Entity(name = "sale")
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor

@@ -2,10 +2,11 @@ package dev.shoxruhjon.ekorxona.service.statistic;
 
 import dev.shoxruhjon.ekorxona.dto.response.EmployeeByDepartmentResponse;
 import dev.shoxruhjon.ekorxona.entity.EmployeeEntity;
-import dev.shoxruhjon.ekorxona.entity.EmployeeResponse;
+import dev.shoxruhjon.ekorxona.dto.response.EmployeeResponse;
 import dev.shoxruhjon.ekorxona.entity.enums.Department;
 import dev.shoxruhjon.ekorxona.repository.CustomerRepository;
 import dev.shoxruhjon.ekorxona.repository.EmployeeRepository;
+import dev.shoxruhjon.ekorxona.repository.SaleRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,7 @@ public class StatisticServiceImpl implements StatisticService {
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
     private final CustomerRepository customerRepository;
+    private final SaleRepository saleRepository;
 
     @Override
     public List<EmployeeByDepartmentResponse> getEmployeesByDepartment() {
@@ -89,5 +91,29 @@ public class StatisticServiceImpl implements StatisticService {
         LocalDateTime startDate = LocalDateTime.now();
         LocalDateTime endDate = LocalDateTime.now().minusMonths(1);
         return customerRepository.countByRegistrationDateBetween(startDate, endDate);
+    }
+
+    @Override
+    public String getTypeWithHighestAdvertisingCosts() {
+        return saleRepository.findTypeWithHighestAdvertisingCosts();
+    }
+
+    @Override
+    public LocalDateTime getDayWithMostRegistrationsLastMonth() {
+        LocalDateTime startDate = LocalDateTime.now();
+        LocalDateTime endDate = LocalDateTime.now().minusMonths(1);
+        return customerRepository.findDayWithMostRegistrationsLastMonth(startDate, endDate);
+    }
+
+    @Override
+    public Integer getEmployeeWithMostAdvertisingExpenses() {
+        return saleRepository.findEmployeeWithMostAdvertisingExpenses();
+    }
+
+    @Override
+    public Integer countAdvertisementsLaunchedLastMonth() {
+        LocalDateTime startDate = LocalDateTime.now();
+        LocalDateTime endDate = LocalDateTime.now().minusMonths(1);
+        return saleRepository.countAdvertisementsLaunchedLastMonth(startDate, endDate);
     }
 }

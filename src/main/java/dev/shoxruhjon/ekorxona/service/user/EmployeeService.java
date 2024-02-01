@@ -3,7 +3,7 @@ package dev.shoxruhjon.ekorxona.service.user;
 import dev.shoxruhjon.ekorxona.dto.request.PassportCreateDto;
 import dev.shoxruhjon.ekorxona.dto.request.EmployeeCreateDto;
 import dev.shoxruhjon.ekorxona.dto.request.EmployeeUpdateDto;
-import dev.shoxruhjon.ekorxona.entity.AuthResponse;
+import dev.shoxruhjon.ekorxona.dto.response.AuthResponse;
 import dev.shoxruhjon.ekorxona.entity.PassportEntity;
 import dev.shoxruhjon.ekorxona.entity.EmployeeEntity;
 import lombok.NonNull;

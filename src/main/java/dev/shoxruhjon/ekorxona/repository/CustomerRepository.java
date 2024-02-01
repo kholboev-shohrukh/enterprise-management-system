@@ -22,5 +22,17 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
     Optional<CustomerEntity> findByIdCustomer(Integer id);
 
     @Query("select COUNT(c) from customer c WHERE c.createdAt BETWEEN :startDate AND :endDate")
-    Integer countByRegistrationDateBetween(@Param("startDate")LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    Integer countByRegistrationDateBetween(@Param("startDate") LocalDateTime startDate,
+                                           @Param("endDate") LocalDateTime endDate);
+
+    @Query("""
+           SELECT DATE(c.createdAt) as registrationDay, COUNT(c) as registrationCount 
+           FROM customer c
+           WHERE DATE(c.createdAt) BETWEEN :startDate AND :endDate
+           GROUP BY registrationDay
+           ORDER BY registrationCount DESC 
+           LIMIT 1
+           """)
+    LocalDateTime findDayWithMostRegistrationsLastMonth(@Param("startDate") LocalDateTime startDate,
+                                                        @Param("endDate") LocalDateTime endDate);
 }
